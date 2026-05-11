@@ -7,6 +7,10 @@
 
 ## Unreleased: mitmproxy next
 
+- Fix `authority and subject key identifier mismatch` errors when mitmproxy
+  is configured with a custom CA whose SubjectKeyIdentifier was not derived
+  as SHA-1 of the public key.
+  ([#8214](https://github.com/mitmproxy/mitmproxy/pull/8214), @unique-jakub)
 - Fix `IndexError` in `is_mostly_bin` when exporting flows to HAR with payloads
   that have a UTF-8 continuation byte at the 100-byte cutoff.
   ([#8196](https://github.com/mitmproxy/mitmproxy/pull/8196), @juliosuas)
