@@ -145,6 +145,17 @@ class TestCertStore:
 
 
 class TestDummyCert:
+    def test_validity_period(self, tstore):
+        r = certs.dummy_cert(
+            tstore.default_privatekey,
+            tstore.default_ca._cert,
+            "foo.com",
+            [],
+        )
+        validity_period = r.notafter - r.notbefore
+        assert validity_period == certs.CERT_EXPIRY
+        assert validity_period < timedelta(days=200)
+
     def test_with_ca(self, tstore):
         r = certs.dummy_cert(
             tstore.default_privatekey,
